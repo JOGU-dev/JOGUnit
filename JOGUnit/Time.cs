@@ -1,59 +1,59 @@
-namespace JOGUnit;
+﻿namespace JOGUnit;
 
-public class Time : Unit
+public struct Time : IQuantity<TimeUnit>, IEquatable<Time>
 {
-    public static readonly Unit Seconds = new Time(TimeType.Seconds, "seconds");
-    public static readonly Unit Minutes = new Time(TimeType.Minutes, "minutes");
-    public static readonly Unit Hours = new Time(TimeType.Hours, "hours");
+    public static Time FromMilliseconds(double value) => new (value, TimeUnit.Milliseconds);
+    public static Time FromSeconds(double value) => new (value, TimeUnit.Seconds);
+    public static Time FromMinutes(double value) => new (value, TimeUnit.Minutes);
+    public static Time FromHours(double value) => new(value, TimeUnit.Hours);
+    
+    public double Value { get; set; }
+    public TimeUnit Unit { get; set; }
 
-    private TimeType TimeType { get; }
-        
-    public Time(TimeType timeType, string representation) : base(UnitType.Time, representation)
+    public double Milliseconds => GetValue(TimeUnit.Milliseconds);
+    public double Seconds => GetValue(TimeUnit.Seconds);
+    public double Minutes => GetValue(TimeUnit.Minutes);
+    public double Hours => GetValue(TimeUnit.Hours);
+
+    public Time(double value, TimeUnit unit)
     {
-        TimeType = timeType;
+        Value = value;
+        Unit = unit;
     }
-        
-    protected override double ConvertValue(double doubleValue, Unit unit)
+    
+    public double GetValue(TimeUnit unit) => Unit.Convert(Value, unit);
+    
+    #region Arithmetic operators
+    
+    public static Time operator +(Time a, Time b) => new(a.Value + b.GetValue(a.Unit), a.Unit);
+    public static Time operator -(Time a, Time b) => new(a.Value - b.GetValue(a.Unit), a.Unit);
+    public static Time operator *(Time a, Time b) => new(a.Value * b.GetValue(a.Unit), a.Unit);
+    public static Time operator /(Time a, Time b) => new(a.Value / b.GetValue(a.Unit), a.Unit);
+    public static Time operator ++(Time a) => new(a.Value + 1, a.Unit);
+    public static Time operator --(Time a) => new(a.Value - 1, a.Unit);
+
+    #endregion
+
+    #region Equality operators
+
+    public static bool operator ==(Time a, double b) => a.Value.Equals(b);
+    public static bool operator !=(Time a, double b) => !a.Value.Equals(b);
+
+    #endregion
+
+    public bool Equals(Time other) => Value.Equals(other.GetValue(Unit));
+    public override bool Equals(object obj) => obj is Time other && Equals(other);
+
+    public override string ToString()
     {
-        return TimeType switch
-        {
-            TimeType.Seconds => SecondsTo(doubleValue, (Time) unit),
-            TimeType.Minutes => MinutesTo(doubleValue, (Time) unit),
-            TimeType.Hours => HoursTo(doubleValue, (Time) unit),
-            _ => doubleValue
-        };
+        return $"{Value} {(Math.Abs(Value - 1.0d) < double.Epsilon ? Unit.SingularName : Unit.PluralName)}";
     }
 
-    private double SecondsTo(double doubleValue, Time unit)
+    public override int GetHashCode()
     {
-        return unit.TimeType switch
+        unchecked
         {
-            TimeType.Seconds => doubleValue,
-            TimeType.Minutes => doubleValue / 60,
-            TimeType.Hours => doubleValue / 3600,
-            _ => doubleValue
-        };
-    }
-        
-    private double MinutesTo(double doubleValue, Time unit)
-    {
-        return unit.TimeType switch
-        {
-            TimeType.Seconds => doubleValue * 60,
-            TimeType.Minutes => doubleValue,
-            TimeType.Hours => doubleValue / 60,
-            _ => doubleValue
-        };
-    }
-
-    private double HoursTo(double doubleValue, Time unit)
-    {
-        return unit.TimeType switch
-        {
-            TimeType.Seconds => doubleValue * 3600,
-            TimeType.Minutes => doubleValue * 60,
-            TimeType.Hours => doubleValue,
-            _ => doubleValue
-        };
+            return (Value.GetHashCode() * 397) ^ (Unit != null ? Unit.GetHashCode() : 0);
+        }
     }
 }

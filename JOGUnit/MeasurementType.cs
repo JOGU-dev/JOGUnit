@@ -1,6 +1,6 @@
 namespace JOGUnit;
 
-public enum UnitType
+public enum MeasurementType
 {
     Time,
     Mass,

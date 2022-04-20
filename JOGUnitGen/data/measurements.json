@@ -1,0 +1,34 @@
+﻿{
+  "measurements": [
+    {
+      "type": "time",
+      "baseUnit" : "second",
+      "units" : [
+        {
+          "singularName": "millisecond",
+          "pluralName": "milliseconds",
+          "abbreviation": "ms",
+          "conversion": 0.001
+        },
+        {
+          "singularName": "second",
+          "pluralName": "seconds",
+          "abbreviation": "s",
+          "conversion": 1
+        },
+        {
+          "singularName": "minute",
+          "pluralName": "minutes",
+          "abbreviation": "m",
+          "conversion": 60
+        },
+        {
+          "singularName": "hour",
+          "pluralName": "hours",
+          "abbreviation": "h",
+          "conversion": 3600
+        }
+      ]
+    }
+  ]
+}
