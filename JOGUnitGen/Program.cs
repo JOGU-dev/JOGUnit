@@ -1,24 +1,56 @@
-﻿using JOGUnit;
+﻿using JOGUnitGen;
+using JOGUnitGen.Generators;
+using JOGUnitJson;
 using Newtonsoft.Json;
 
 try
 {
+    var unitsDirectory = Path.Combine(GetRootDirectory(), "JOGUnit", "Units");
+    var quantitiesDirectory = Path.Combine(GetRootDirectory(), "JOGUnit", "Quantities");
+
+    if (!Directory.Exists(unitsDirectory))
+        Directory.CreateDirectory(unitsDirectory);
+    
+    if (!Directory.Exists(quantitiesDirectory))
+        Directory.CreateDirectory(quantitiesDirectory);
+
     var file = Path.Combine(Directory.GetCurrentDirectory(), "data", "measurements.json");
     var json = File.ReadAllText(file);
-    var measurements = JsonConvert.DeserializeObject<List<Measurement>>(json) ?? new List<Measurement>();
-    foreach (var measurement in measurements )
+    var data = JsonConvert.DeserializeObject<Data>(json, new JsonSerializerSettings
     {
-        Console.WriteLine(measurement.Type);
-        foreach (var unit in measurement.Units)
+        Converters = new List<JsonConverter> { new MeasurementConverter() }
+    });
+    if (data != null)
+    {
+        var unitGenerator = new UnitGenerator();
+        var quantityGenerator = new QuantityGenerator();
+        foreach (var measurement in data.Measurements)
         {
-            Console.WriteLine($"\t {unit.SingularName}");
-            Console.WriteLine($"\t {unit.PluralName}");
-            Console.WriteLine($"\t {unit.Abbreviation}");
+            var unitFileName = $"{measurement.Type}Unit.cs";
+            File.WriteAllText(Path.Combine(unitsDirectory, unitFileName), unitGenerator.Generate(measurement));
+            
+            var quantityFileName = $"{measurement.Type}.cs";
+            File.WriteAllText(Path.Combine(quantitiesDirectory, quantityFileName), quantityGenerator.Generate(measurement));
         }
     }
 }
 catch (Exception e)
 {
     Console.WriteLine(e.Message);
+}
+
+string GetRootDirectory()
+{
+    const string rootDirectoryName = "JOGUnit";
+    var current = new DirectoryInfo(Directory.GetCurrentDirectory());
+    while (!current.Name.Equals(rootDirectoryName))
+    {
+        if (current.Parent == null)
+            break;
+        
+        current = current.Parent;
+    }
+    
+    return current.FullName;
 }
 

@@ -1,6 +1,6 @@
 ﻿namespace JOGUnit;
 
-public abstract class Unit
+public class Unit
 {
     public MeasurementType Measurement { get; set; }
     public string SingularName { get; set; }
@@ -8,7 +8,7 @@ public abstract class Unit
     public string Abbreviation { get; set; }
     public double Conversion { get; set; }
 
-    protected Unit(MeasurementType measurement, string singularName, string pluralName, string abbreviation, double conversion)
+    public Unit(MeasurementType measurement, string singularName, string pluralName, string abbreviation, double conversion)
     {
         Measurement = measurement;
         SingularName = singularName;
