@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\JOGUnitJson\JOGUnitJson.csproj" />
       <ProjectReference Include="..\JOGUnit\JOGUnit.csproj" />
     </ItemGroup>
 

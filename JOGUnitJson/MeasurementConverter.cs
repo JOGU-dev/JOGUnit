@@ -20,6 +20,24 @@ public class MeasurementConverter : JsonConverter<Measurement>
             throw new JsonException("Could not find valid measurement type");
 
         measurement.Type = type;
+        measurement.Units = new List<Unit>();
+
+        if (obj.TryGetValue("units", out var unitsToken) && unitsToken is JArray unitsArray)
+        {
+            foreach (var unitToken in unitsArray)
+            {
+                measurement.Units.Add(new Unit(
+                    measurement.Type, 
+                    (string)unitToken["singularName"],
+                    (string)unitToken["pluralName"],
+                    (string)unitToken["abbreviation"],
+                    (double)unitToken["conversion"]
+                    ));
+            }
+        }
+
+        measurement.BaseUnit = measurement.Units.FirstOrDefault(u => u.SingularName.Equals((string)obj["baseUnit"]));
+
         return measurement;
     }
 }
