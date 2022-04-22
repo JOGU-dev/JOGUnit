@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using JOGUnit;
 
 namespace JOGUnitGen.Generators;
@@ -30,7 +31,7 @@ public class {unitName} : Unit
         foreach (var unit in units)
         {
             var pluralName = unit.PluralName.ToUpperFirstCharacter();
-            builder.AppendLine($"{GetIndent(indent)}public static readonly {unitName} {pluralName} = new(\"{unit.SingularName}\", \"{unit.PluralName}\", \"{unit.Abbreviation}\", {unit.Conversion});");
+            builder.AppendLine($"{GetIndent(indent)}public static readonly {unitName} {pluralName} = new(\"{unit.SingularName}\", \"{unit.PluralName}\", \"{unit.Abbreviation}\", {unit.Conversion.ToString(CultureInfo.InvariantCulture)});");
         }
         return builder.ToString();
     }

@@ -84,7 +84,7 @@ public struct {className} : IQuantity<{unitName}>, IEquatable<{className}>
         foreach (var unit in units)
         {
             var pluralName = unit.PluralName.ToUpperFirstCharacter();
-            builder.AppendLine($"{GetIndent(indent)}public double {pluralName} => => GetValue({unitName}.{pluralName});");
+            builder.AppendLine($"{GetIndent(indent)}public double {pluralName} => GetValue({unitName}.{pluralName});");
         }
         builder.AppendLine();
         builder.AppendLine($"{GetIndent(indent)}#endregion");
