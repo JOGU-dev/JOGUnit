@@ -16,7 +16,7 @@ public class QuantityGenerator
 
 public struct {className} : IQuantity<{unitName}>, IEquatable<{className}>
 {{
-{GenerateStaticGeneratorFunctions(++indent, className, unitName, measurement.Units)}
+{GenerateStaticFunctions(++indent, className, unitName, measurement.Units)}
     public double Value {{ get; set; }}
     public {unitName} Unit {{ get; set; }}
     
@@ -65,7 +65,7 @@ public struct {className} : IQuantity<{unitName}>, IEquatable<{className}>
 }}";
     }
 
-    private string GenerateStaticGeneratorFunctions(int indent, string className, string unitName, IEnumerable<Unit> units)
+    private string GenerateStaticFunctions(int indent, string className, string unitName, IEnumerable<Unit> units)
     {
         var builder = new StringBuilder();
         foreach (var unit in units)
