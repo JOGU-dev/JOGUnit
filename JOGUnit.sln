@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOGUnit", "JOGUnit\JOGUnit.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOGUnitTests", "JOGUnitTests\JOGUnitTests.csproj", "{B2F53578-62F7-4798-9030-3E4353C48D50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOGUnitJson", "JOGUnitJson\JOGUnitJson.csproj", "{3C79F9C2-8A36-450D-8B27-E177BD182A6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOGUnitSerialization", "JOGUnitSerialization\JOGUnitSerialization.csproj", "{3C79F9C2-8A36-450D-8B27-E177BD182A6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
