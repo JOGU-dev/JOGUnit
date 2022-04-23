@@ -10,7 +10,7 @@ public class QuantityGenerator
     public string Generate(Measurement measurement)
     {
         var indent = 0;
-        var className = measurement.Type.ToString();
+        var className = measurement.MeasurementType.ToPascalCase();
         var unitName = $"{className}Unit";
         return $@"namespace JOGUnit;
 
@@ -48,7 +48,7 @@ public struct {className} : IQuantity<{unitName}>, IEquatable<{className}>
     #endregion
     
     public bool Equals({className} other) => Value.Equals(other.GetValue(Unit));
-    public override bool Equals(object obj) => obj is {className} other && Equals(other);
+    public override bool Equals(object? obj) => obj is {className} other && Equals(other);
     
     public override string ToString()
     {{
@@ -70,7 +70,7 @@ public struct {className} : IQuantity<{unitName}>, IEquatable<{className}>
         var builder = new StringBuilder();
         foreach (var unit in units)
         {
-            var pluralName = unit.PluralName.ToUpperFirstCharacter();
+            var pluralName = unit.PluralName.ToPascalCase();
             builder.AppendLine($"{GetIndent(indent)}public static {className} From{pluralName}(double value) => new (value, {unitName}.{pluralName});");
         }
         return builder.ToString();
@@ -83,7 +83,7 @@ public struct {className} : IQuantity<{unitName}>, IEquatable<{className}>
         builder.AppendLine();
         foreach (var unit in units)
         {
-            var pluralName = unit.PluralName.ToUpperFirstCharacter();
+            var pluralName = unit.PluralName.ToPascalCase();
             builder.AppendLine($"{GetIndent(indent)}public double {pluralName} => GetValue({unitName}.{pluralName});");
         }
         builder.AppendLine();

@@ -7,7 +7,7 @@ namespace JOGUnitTests;
 public class TimeTests
 {
     [Test]
-    public void TimeConversionTest()
+    public void ConversionTest()
     {
         var duration = new Time(60, TimeUnit.Seconds);
 
@@ -22,7 +22,7 @@ public class TimeTests
     }
 
     [Test]
-    public void TimePlusOperatorTest()
+    public void PlusOperatorTest()
     {
         var a = Time.FromSeconds(10);
         var b = Time.FromSeconds(40);
@@ -31,7 +31,7 @@ public class TimeTests
     }
 
     [Test]
-    public void TimeMinusOperatorTest()
+    public void MinusOperatorTest()
     {
         var a = Time.FromMinutes(1);
         var b = Time.FromSeconds(30);
@@ -41,7 +41,7 @@ public class TimeTests
     }
 
     [Test]
-    public void TimeToStringTest()
+    public void ToStringTest()
     {
         var oneMinute = Time.FromMinutes(1);
         Assert.AreEqual("1 minute", oneMinute.ToString());

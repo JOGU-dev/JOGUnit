@@ -2,7 +2,7 @@ namespace JOGUnit;
 
 public class Measurement
 {
-    public MeasurementType Type { get; set; }
-    public Unit BaseUnit { get; set; }
-    public List<Unit> Units { get; set; }
+    public string MeasurementType { get; set; }
+    public Unit? BaseUnit { get; set; }
+    public List<Unit> Units { get; set; } = new List<Unit>();
 }

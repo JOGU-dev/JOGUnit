@@ -29,6 +29,78 @@
           "conversion": 3600
         }
       ]
+    },
+    {
+      "type": "length",
+      "baseUnit" : "meter",
+      "units" : [
+        {
+          "singularName": "nanometer",
+          "pluralName": "nanometers",
+          "abbreviation": "nm",
+          "conversion": 1e+9
+        },
+        {
+          "singularName": "micrometer",
+          "pluralName": "micrometers",
+          "abbreviation": "μm",
+          "conversion": 1e+6
+        },
+        {
+          "singularName": "millimeter",
+          "pluralName": "millimeters",
+          "abbreviation": "mm",
+          "conversion": 0.001
+        },
+        {
+          "singularName": "centimeter",
+          "pluralName": "centimeters",
+          "abbreviation": "cm",
+          "conversion": 0.01
+        },
+        {
+          "singularName": "meter",
+          "pluralName": "meters",
+          "abbreviation": "m",
+          "conversion": 1
+        },
+        {
+          "singularName": "kilometer",
+          "pluralName": "kilometers",
+          "abbreviation": "km",
+          "conversion": 1000
+        },
+        {
+          "singularName": "inch",
+          "pluralName": "inches",
+          "abbreviation": "\\'",
+          "conversion": 0.0254
+        },
+        {
+          "singularName": "foot",
+          "pluralName": "feet",
+          "abbreviation": "ft",
+          "conversion": 0.3048
+        },
+        {
+          "singularName": "yard",
+          "pluralName": "yards",
+          "abbreviation": "yd",
+          "conversion": 0.9144
+        },
+        {
+          "singularName": "mile",
+          "pluralName": "miles",
+          "abbreviation": "mi",
+          "conversion": 1609.344
+        },
+        {
+          "singularName": "nautical mile",
+          "pluralName": "nautical miles",
+          "abbreviation": "nmi",
+          "conversion": 1852
+        }
+      ]
     }
   ]
 }

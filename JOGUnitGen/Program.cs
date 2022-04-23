@@ -5,8 +5,10 @@ using Newtonsoft.Json;
 
 try
 {
-    var unitsDirectory = Path.Combine(GetRootDirectory(), "JOGUnit", "Units");
-    var quantitiesDirectory = Path.Combine(GetRootDirectory(), "JOGUnit", "Quantities");
+    var rootDirectory = GetRootDirectory();
+    var projectDirectory = Path.Combine(rootDirectory, "JOGUnit");
+    var unitsDirectory = Path.Combine(projectDirectory, "Units");
+    var quantitiesDirectory = Path.Combine(projectDirectory, "Quantities");
 
     if (!Directory.Exists(unitsDirectory))
         Directory.CreateDirectory(unitsDirectory);
@@ -22,14 +24,18 @@ try
     });
     if (data != null)
     {
+        var measurementTypesGenerator = new MeasurementTypesGenerator();
         var unitGenerator = new UnitGenerator();
         var quantityGenerator = new QuantityGenerator();
-        foreach (var measurement in data.Measurements)
+        
+        File.WriteAllText(Path.Combine(projectDirectory, "MeasurementType.cs"), measurementTypesGenerator.Generate(data.Measurements.Select(m => m.MeasurementType).ToArray()));
+
+        foreach (var measurement in data.Measurements.Where(m => !string.IsNullOrEmpty(m.MeasurementType)))
         {
-            var unitFileName = $"{measurement.Type}Unit.cs";
+            var unitFileName = $"{measurement.MeasurementType.ToPascalCase()}Unit.cs";
             File.WriteAllText(Path.Combine(unitsDirectory, unitFileName), unitGenerator.Generate(measurement));
             
-            var quantityFileName = $"{measurement.Type}.cs";
+            var quantityFileName = $"{measurement.MeasurementType?.ToPascalCase()}.cs";
             File.WriteAllText(Path.Combine(quantitiesDirectory, quantityFileName), quantityGenerator.Generate(measurement));
         }
     }
