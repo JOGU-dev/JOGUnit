@@ -10,14 +10,13 @@ public class UnitGenerator
     
     public string Generate(Measurement measurement)
     {
-        var measurementString = measurement.Type.ToString();
+        var measurementString = measurement.MeasurementType.ToPascalCase();
         var unitName = $"{measurementString}Unit";
         return $@"namespace JOGUnit;
 
 public class {unitName} : Unit
 {{
 {GenerateStaticProperties(1, unitName, measurement.Units)}
-
     private {unitName}(string singularName, string pluralName, string abbreviation, double conversion) : base(MeasurementType.{measurementString}, singularName, pluralName, abbreviation, conversion)
     {{
 
@@ -30,7 +29,7 @@ public class {unitName} : Unit
         var builder = new StringBuilder();
         foreach (var unit in units)
         {
-            var pluralName = unit.PluralName.ToUpperFirstCharacter();
+            var pluralName = unit.PluralName.ToPascalCase();
             builder.AppendLine($"{GetIndent(indent)}public static readonly {unitName} {pluralName} = new(\"{unit.SingularName}\", \"{unit.PluralName}\", \"{unit.Abbreviation}\", {unit.Conversion.ToString(CultureInfo.InvariantCulture)});");
         }
         return builder.ToString();

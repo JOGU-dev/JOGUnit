@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOGUnitTests", "JOGUnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOGUnitSerialization", "JOGUnitSerialization\JOGUnitSerialization.csproj", "{3C79F9C2-8A36-450D-8B27-E177BD182A6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JOGUnitExtensions", "JOGUnitExtensions\JOGUnitExtensions.csproj", "{6B363A47-0A72-4F3F-90F9-260B83CD6519}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{3C79F9C2-8A36-450D-8B27-E177BD182A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C79F9C2-8A36-450D-8B27-E177BD182A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C79F9C2-8A36-450D-8B27-E177BD182A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B363A47-0A72-4F3F-90F9-260B83CD6519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B363A47-0A72-4F3F-90F9-260B83CD6519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B363A47-0A72-4F3F-90F9-260B83CD6519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B363A47-0A72-4F3F-90F9-260B83CD6519}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

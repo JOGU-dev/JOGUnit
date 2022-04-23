@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\JOGUnitExtensions\JOGUnitExtensions.csproj" />
       <ProjectReference Include="..\JOGUnitSerialization\JOGUnitSerialization.csproj" />
       <ProjectReference Include="..\JOGUnit\JOGUnit.csproj" />
     </ItemGroup>

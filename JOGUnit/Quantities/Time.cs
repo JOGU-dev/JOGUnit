@@ -46,7 +46,7 @@ public struct Time : IQuantity<TimeUnit>, IEquatable<Time>
     #endregion
     
     public bool Equals(Time other) => Value.Equals(other.GetValue(Unit));
-    public override bool Equals(object obj) => obj is Time other && Equals(other);
+    public override bool Equals(object? obj) => obj is Time other && Equals(other);
     
     public override string ToString()
     {

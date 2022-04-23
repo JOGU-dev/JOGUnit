@@ -19,7 +19,7 @@ public class MeasurementConverter : JsonConverter<Measurement>
         if (!obj.TryGetValue("type", out var typeToken) || !Enum.TryParse(typeToken.Value<string>(), true, out MeasurementType type))
             throw new JsonException("Could not find valid measurement type");
 
-        measurement.Type = type;
+        measurement.MeasurementType = (string)obj["type"];
         measurement.Units = new List<Unit>();
 
         if (obj.TryGetValue("units", out var unitsToken) && unitsToken is JArray unitsArray)
@@ -27,7 +27,7 @@ public class MeasurementConverter : JsonConverter<Measurement>
             foreach (var unitToken in unitsArray)
             {
                 measurement.Units.Add(new Unit(
-                    measurement.Type, 
+                    default,
                     (string)unitToken["singularName"],
                     (string)unitToken["pluralName"],
                     (string)unitToken["abbreviation"],
