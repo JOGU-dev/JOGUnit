@@ -101,6 +101,78 @@
           "conversion": 1852
         }
       ]
+    },
+    {
+      "type": "mass",
+      "baseUnit" : "kilogram",
+      "units" : [
+        {
+          "singularName": "picogram",
+          "pluralName": "picograms",
+          "abbreviation": "pg",
+          "conversion": 1e+15
+        },
+        {
+          "singularName": "nanogram",
+          "pluralName": "nanograms",
+          "abbreviation": "ng",
+          "conversion": 1e+12
+        },
+        {
+          "singularName": "microgram",
+          "pluralName": "micrograms",
+          "abbreviation": "µg",
+          "conversion": 1e+9
+        },
+        {
+          "singularName": "milligram",
+          "pluralName": "milligrams",
+          "abbreviation": "mg",
+          "conversion": 1e+6
+        },
+        {
+          "singularName": "gram",
+          "pluralName": "grams",
+          "abbreviation": "g",
+          "conversion": 0.001
+        },
+        {
+          "singularName": "kilogram",
+          "pluralName": "kilograms",
+          "abbreviation": "kg",
+          "conversion": 1
+        },
+        {
+          "singularName": "tonne",
+          "pluralName": "tonnes",
+          "abbreviation": "t",
+          "conversion": 1000
+        },
+        {
+          "singularName": "megatonne",
+          "pluralName": "megatonnes",
+          "abbreviation": "t",
+          "conversion": 1e-9
+        },
+        {
+          "singularName": "pound",
+          "pluralName": "pounds",
+          "abbreviation": "lb",
+          "conversion": 0.453592
+        },
+        {
+          "singularName": "ounce",
+          "pluralName": "ounces",
+          "abbreviation": "oz",
+          "conversion": 0.028349
+        },
+        {
+          "singularName": "stone",
+          "pluralName": "stones",
+          "abbreviation": "st",
+          "conversion": 0.157473
+        }
+      ]
     }
   ]
 }

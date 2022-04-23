@@ -4,4 +4,5 @@ public enum MeasurementType
 {
     Time,
     Length,
+    Mass,
 }

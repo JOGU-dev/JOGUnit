@@ -15,10 +15,7 @@ public class MeasurementConverter : JsonConverter<Measurement>
     {
         var obj = JObject.Load(reader);
         var measurement = new Measurement();
-
-        if (!obj.TryGetValue("type", out var typeToken) || !Enum.TryParse(typeToken.Value<string>(), true, out MeasurementType type))
-            throw new JsonException("Could not find valid measurement type");
-
+        
         measurement.MeasurementType = (string)obj["type"];
         measurement.Units = new List<Unit>();
 
